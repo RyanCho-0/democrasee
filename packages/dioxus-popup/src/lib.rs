@@ -78,7 +78,7 @@ pub fn default() -> Element {
 }
 
 #[component]
-pub fn PopupZone() -> Element {
+pub fn PopupZone(bg_color: String) -> Element {
     let mut popup: PopupService = use_context();
     let mut hover_close = use_signal(|| false);
 
@@ -98,7 +98,8 @@ pub fn PopupZone() -> Element {
             },
             if popup.is_opened() {
                 div {
-                    class: "relative bg-[#424563] rounded-[12px] border-[#292B3C] border-[1px] p-[25px] min-w-[350px]",
+                    class: "relative rounded-[12px] border-[#292B3C] border-[1px] p-[25px] min-w-[350px]",
+                    style: "background-color: {bg_color};",
                     onclick: move |e| {
                         e.stop_propagation();
                     },

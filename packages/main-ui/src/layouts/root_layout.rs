@@ -19,6 +19,6 @@ pub fn RootLayout(lang: Language) -> Element {
             }
             div { class: "w-full max-w-[1440px]", Outlet::<Route> {} }
         }
-        PopupZone {}
+        PopupZone { bg_color: theme.primary06 }
     }
 }
