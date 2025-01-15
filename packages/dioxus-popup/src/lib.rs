@@ -21,7 +21,7 @@ impl PopupService {
     }
 
     pub fn render(&self) -> Element {
-        (self.data)().clone().unwrap_or(default())
+        (self.data)().clone().unwrap_or(VNode::empty())
     }
 
     pub fn is_opened(&self) -> bool {
@@ -70,11 +70,6 @@ impl PopupService {
     pub fn use_popup_service() -> PopupService {
         use_context()
     }
-}
-
-#[component]
-pub fn default() -> Element {
-    rsx! {}
 }
 
 #[component]
