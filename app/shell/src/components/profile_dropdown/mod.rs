@@ -30,7 +30,9 @@ pub fn ProfileDropdown() -> Element {
 
     let user = user_ctx().user.clone();
     let Some(user) = user else {
-        return rsx! { div {} };
+        return rsx! {
+            div {}
+        };
     };
 
     let profile_url = user.profile_url.clone();
@@ -72,9 +74,7 @@ pub fn ProfileDropdown() -> Element {
 
                 div { class: "absolute right-0 top-full w-[250px] rounded-lg border border-divider bg-bg p-2.5 z-999",
                     // Teams label
-                    div { class: "text-xs text-c-secondary px-2 py-1",
-                        "{tr.teams}"
-                    }
+                    div { class: "text-xs text-c-secondary px-2 py-1", "{tr.teams}" }
 
                     // Scrollable team list
                     div { class: "max-h-[300px] overflow-y-auto pr-2 -mr-2",
@@ -94,9 +94,7 @@ pub fn ProfileDropdown() -> Element {
                             } else {
                                 div { class: "w-6 h-6 bg-neutral-600 rounded-full" }
                             }
-                            span { class: "text-sm text-c-secondary truncate",
-                                "{user.display_name}"
-                            }
+                            span { class: "text-sm text-c-secondary truncate", "{user.display_name}" }
                         }
 
                         // Team entries
@@ -116,9 +114,7 @@ pub fn ProfileDropdown() -> Element {
                                 } else {
                                     div { class: "w-6 h-6 bg-neutral-600 rounded-full" }
                                 }
-                                span { class: "text-sm text-c-secondary truncate",
-                                    "{team.nickname}"
-                                }
+                                span { class: "text-sm text-c-secondary truncate", "{team.nickname}" }
                             }
                         }
                     }
@@ -131,9 +127,9 @@ pub fn ProfileDropdown() -> Element {
                         class: "w-full px-2 py-1.5 hover:bg-hover rounded-md text-sm text-c-secondary cursor-pointer text-left",
                         onclick: move |_| {
                             open.set(false);
-                            popup
-                                .open(rsx! { TeamCreationPopup {} })
-                                .with_title(tr.create_team);
+                            popup.open(rsx! {
+                                TeamCreationPopup {}
+                            }).with_title(tr.create_team);
                         },
                         "{tr.create_team}"
                     }

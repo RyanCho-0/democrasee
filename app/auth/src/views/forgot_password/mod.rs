@@ -15,8 +15,7 @@ pub fn ForgotPassword() -> Element {
     let mut success_message: Signal<Option<String>> = use_signal(|| None);
 
     rsx! {
-        div {
-            class: "flex flex-col gap-5 w-100 max-w-100 mx-1.25 max-mobile:w-full! max-mobile:max-w-full!",
+        div { class: "flex flex-col gap-5 w-100 max-w-100 mx-1.25 max-mobile:w-full! max-mobile:max-w-full!",
             div { class: "flex flex-col gap-4 w-full",
                 h2 { class: "text-lg font-semibold text-text-primary", {tr.forgot_password_title} }
                 p { class: "text-sm text-muted-foreground", {tr.forgot_password_description} }
@@ -70,9 +69,9 @@ pub fn ForgotPassword() -> Element {
 
                                 loading.set(true);
                                 let result = send_code_handler(SendCodeRequest::Email {
-                                    email: email_val,
-                                })
-                                .await;
+                                        email: email_val,
+                                    })
+                                    .await;
                                 loading.set(false);
 
                                 match result {
@@ -85,10 +84,17 @@ pub fn ForgotPassword() -> Element {
                                     }
                                 }
                             },
-                            if loading() { {tr.sending} } else { {tr.send_code} }
+                            if loading() {
+                                {tr.sending}
+                            } else {
+                                {tr.send_code}
+                            }
                         }
                     }
-                } else if success_message().map(|m| m == tr.password_reset_success.to_string()).unwrap_or(false) {
+                } else if success_message()
+                    .map(|m| m == tr.password_reset_success.to_string())
+                    .unwrap_or(false)
+                {
                     // Success state after password reset
                     div { class: "flex flex-col gap-4 items-center w-full",
                         a {
@@ -182,11 +188,11 @@ pub fn ForgotPassword() -> Element {
 
                                 loading.set(true);
                                 let result = reset_password_handler(ResetPasswordRequest {
-                                    email: email.read().trim().to_string(),
-                                    password: password_val,
-                                    code: code_val,
-                                })
-                                .await;
+                                        email: email.read().trim().to_string(),
+                                        password: password_val,
+                                        code: code_val,
+                                    })
+                                    .await;
                                 loading.set(false);
 
                                 match result {
@@ -198,7 +204,11 @@ pub fn ForgotPassword() -> Element {
                                     }
                                 }
                             },
-                            if loading() { {tr.resetting} } else { {tr.reset_password} }
+                            if loading() {
+                                {tr.resetting}
+                            } else {
+                                {tr.reset_password}
+                            }
                         }
                     }
                 }

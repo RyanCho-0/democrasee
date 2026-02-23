@@ -12,7 +12,7 @@ pub fn SurveyEditor(props: SurveyEditorProps) -> Element {
 
     rsx! {
         div { class: "flex flex-col gap-4 w-full",
-            for (idx, question) in questions.read().iter().enumerate() {
+            for (idx , question) in questions.read().iter().enumerate() {
                 {
                     let question = question.clone();
                     rsx! {
@@ -60,55 +60,67 @@ fn QuestionTypeSelector(on_add: EventHandler<Question>) -> Element {
             button {
                 class: "px-3 py-2 text-sm border border-neutral-600 rounded-lg hover:bg-neutral-800 text-neutral-300",
                 onclick: move |_| {
-                    on_add.call(Question::SingleChoice(ChoiceQuestion {
-                        title: String::new(),
-                        description: None,
-                        image_url: None,
-                        options: vec!["Option 1".to_string(), "Option 2".to_string()],
-                        is_required: Some(false),
-                        allow_other: None,
-                    }));
+                    on_add
+                        .call(
+                            Question::SingleChoice(ChoiceQuestion {
+                                title: String::new(),
+                                description: None,
+                                image_url: None,
+                                options: vec!["Option 1".to_string(), "Option 2".to_string()],
+                                is_required: Some(false),
+                                allow_other: None,
+                            }),
+                        );
                 },
                 "+ Single Choice"
             }
             button {
                 class: "px-3 py-2 text-sm border border-neutral-600 rounded-lg hover:bg-neutral-800 text-neutral-300",
                 onclick: move |_| {
-                    on_add.call(Question::MultipleChoice(ChoiceQuestion {
-                        title: String::new(),
-                        description: None,
-                        image_url: None,
-                        options: vec!["Option 1".to_string(), "Option 2".to_string()],
-                        is_required: Some(false),
-                        allow_other: None,
-                    }));
+                    on_add
+                        .call(
+                            Question::MultipleChoice(ChoiceQuestion {
+                                title: String::new(),
+                                description: None,
+                                image_url: None,
+                                options: vec!["Option 1".to_string(), "Option 2".to_string()],
+                                is_required: Some(false),
+                                allow_other: None,
+                            }),
+                        );
                 },
                 "+ Multiple Choice"
             }
             button {
                 class: "px-3 py-2 text-sm border border-neutral-600 rounded-lg hover:bg-neutral-800 text-neutral-300",
                 onclick: move |_| {
-                    on_add.call(Question::Subjective(SubjectiveQuestion {
-                        title: String::new(),
-                        description: String::new(),
-                        is_required: Some(false),
-                    }));
+                    on_add
+                        .call(
+                            Question::Subjective(SubjectiveQuestion {
+                                title: String::new(),
+                                description: String::new(),
+                                is_required: Some(false),
+                            }),
+                        );
                 },
                 "+ Subjective"
             }
             button {
                 class: "px-3 py-2 text-sm border border-neutral-600 rounded-lg hover:bg-neutral-800 text-neutral-300",
                 onclick: move |_| {
-                    on_add.call(Question::LinearScale(LinearScaleQuestion {
-                        title: String::new(),
-                        description: None,
-                        image_url: None,
-                        min_value: 1,
-                        max_value: 5,
-                        min_label: "Low".to_string(),
-                        max_label: "High".to_string(),
-                        is_required: Some(false),
-                    }));
+                    on_add
+                        .call(
+                            Question::LinearScale(LinearScaleQuestion {
+                                title: String::new(),
+                                description: None,
+                                image_url: None,
+                                min_value: 1,
+                                max_value: 5,
+                                min_label: "Low".to_string(),
+                                max_label: "High".to_string(),
+                                is_required: Some(false),
+                            }),
+                        );
                 },
                 "+ Linear Scale"
             }
@@ -164,7 +176,7 @@ fn ChoiceQuestionEditor(
             },
         }
         div { class: "flex flex-col gap-1",
-            for (opt_idx, option) in question.options.iter().enumerate() {
+            for (opt_idx , option) in question.options.iter().enumerate() {
                 {
                     let question_for_input = question.clone();
                     let question_for_remove = question.clone();
@@ -266,7 +278,7 @@ fn CheckboxQuestionEditor(
             },
         }
         div { class: "flex flex-col gap-1",
-            for (opt_idx, option) in question.options.iter().enumerate() {
+            for (opt_idx , option) in question.options.iter().enumerate() {
                 {
                     let question = question.clone();
                     let on_change = on_change.clone();
@@ -309,7 +321,7 @@ fn DropdownQuestionEditor(
             },
         }
         div { class: "flex flex-col gap-1",
-            for (opt_idx, option) in question.options.iter().enumerate() {
+            for (opt_idx , option) in question.options.iter().enumerate() {
                 {
                     let question = question.clone();
                     let on_change = on_change.clone();

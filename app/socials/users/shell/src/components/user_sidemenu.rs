@@ -77,34 +77,22 @@ pub fn UserSidemenu(username: String) -> Element {
                 }
 
                 // Display name
-                div { class: "font-medium text-c-secondary",
-                    "{user.display_name}"
-                }
+                div { class: "font-medium text-c-secondary", "{user.display_name}" }
 
                 // Description
                 if !user.description.is_empty() {
-                    div { class: "text-xs text-c-secondary",
-                        "{user.description}"
-                    }
+                    div { class: "text-xs text-c-secondary", "{user.description}" }
                 }
 
                 // Followers/Following counts
                 div { class: "flex gap-4 text-sm",
                     div { class: "flex gap-1",
-                        span { class: "font-semibold text-c-primary",
-                            "{user.followers_count}"
-                        }
-                        span { class: "text-c-secondary",
-                            "{tr.followers}"
-                        }
+                        span { class: "font-semibold text-c-primary", "{user.followers_count}" }
+                        span { class: "text-c-secondary", "{tr.followers}" }
                     }
                     div { class: "flex gap-1",
-                        span { class: "font-semibold text-c-primary",
-                            "{user.followings_count}"
-                        }
-                        span { class: "text-c-secondary",
-                            "{tr.following}"
-                        }
+                        span { class: "font-semibold text-c-primary", "{user.followings_count}" }
+                        span { class: "text-c-secondary", "{tr.following}" }
                     }
                 }
             }
@@ -176,7 +164,7 @@ fn SidemenuLink(to: String, label: &'static str, icon: Element) -> Element {
     rsx! {
         Link {
             class: "flex items-center gap-3 px-2 py-2.5 hover:bg-hover rounded-md text-c-primary",
-            to: to,
+            to,
             {icon}
             span { "{label}" }
         }

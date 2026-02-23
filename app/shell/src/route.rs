@@ -66,7 +66,7 @@ pub fn UserHome(username: String, rest: Vec<String>) -> Element {
             route,
             format_route_as_root_route: |r: UserRoute| r.to_string(),
             parse_route_from_root_route: |url: &str| { <UserRoute as std::str::FromStr>::from_str(url).ok() },
-
+        
         }
     }
 }
@@ -81,7 +81,7 @@ pub fn TeamHome(teamname: String, rest: Vec<String>) -> Element {
             route,
             format_route_as_root_route: |r: TeamRoute| r.to_string(),
             parse_route_from_root_route: |url: &str| { <TeamRoute as std::str::FromStr>::from_str(url).ok() },
-
+        
         }
     }
 }

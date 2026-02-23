@@ -54,7 +54,9 @@ pub fn Home(username: String) -> Element {
 
             div { class: "flex flex-col gap-4",
                 div { class: "flex flex-col gap-1",
-                    label { class: "text-sm font-medium text-[var(--text-secondary)]", "Username" }
+                    label { class: "text-sm font-medium text-[var(--text-secondary)]",
+                        "Username"
+                    }
                     input {
                         class: "w-full px-3 py-2 rounded-lg border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] opacity-50 cursor-not-allowed",
                         r#type: "text",
@@ -64,7 +66,9 @@ pub fn Home(username: String) -> Element {
                 }
 
                 div { class: "flex flex-col gap-1",
-                    label { class: "text-sm font-medium text-[var(--text-secondary)]", "Display Name" }
+                    label { class: "text-sm font-medium text-[var(--text-secondary)]",
+                        "Display Name"
+                    }
                     input {
                         class: "w-full px-3 py-2 rounded-lg border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)]",
                         r#type: "text",
@@ -74,7 +78,9 @@ pub fn Home(username: String) -> Element {
                 }
 
                 div { class: "flex flex-col gap-1",
-                    label { class: "text-sm font-medium text-[var(--text-secondary)]", "Profile Image URL" }
+                    label { class: "text-sm font-medium text-[var(--text-secondary)]",
+                        "Profile Image URL"
+                    }
                     input {
                         class: "w-full px-3 py-2 rounded-lg border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)]",
                         r#type: "text",
@@ -84,7 +90,9 @@ pub fn Home(username: String) -> Element {
                 }
 
                 div { class: "flex flex-col gap-1",
-                    label { class: "text-sm font-medium text-[var(--text-secondary)]", "Description" }
+                    label { class: "text-sm font-medium text-[var(--text-secondary)]",
+                        "Description"
+                    }
                     textarea {
                         class: "w-full px-3 py-2 rounded-lg border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] min-h-[100px] resize-y",
                         value: "{description}",
@@ -101,7 +109,11 @@ pub fn Home(username: String) -> Element {
                 class: "w-fit px-6 py-2 rounded-lg bg-[var(--color-primary)] text-white font-medium hover:opacity-90 disabled:opacity-50",
                 disabled: saving(),
                 onclick: on_save,
-                if saving() { "Saving..." } else { "Save" }
+                if saving() {
+                    "Saving..."
+                } else {
+                    "Save"
+                }
             }
         }
     }

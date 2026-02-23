@@ -11,9 +11,7 @@ pub fn Index() -> Element {
             if let Some(user) = &user {
                 UserSidemenu { username: user.username.clone() }
             }
-            div { class: "flex grow",
-                FeedList {}
-            }
+            div { class: "flex grow", FeedList {} }
             div {
                 class: "flex flex-col gap-2.5 w-70 shrink-0 max-tablet:fixed max-tablet:bottom-4 max-tablet:right-4 max-tablet:z-50 max-tablet:w-auto",
                 aria_label: "Sidebar",

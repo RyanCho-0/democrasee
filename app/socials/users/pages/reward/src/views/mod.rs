@@ -21,9 +21,7 @@ pub fn Home(username: String) -> Element {
             div { class: "flex flex-col gap-4 p-6 rounded-lg border border-[var(--border-primary)]",
                 div { class: "flex flex-col gap-2",
                     p { class: "text-sm text-[var(--text-secondary)]", "Total Points" }
-                    p { class: "text-3xl font-bold text-[var(--text-primary)]",
-                        "{rewards.points}"
-                    }
+                    p { class: "text-3xl font-bold text-[var(--text-primary)]", "{rewards.points}" }
                 }
                 p { class: "text-sm text-[var(--text-secondary)]",
                     "Points earned through participation in spaces and other activities."

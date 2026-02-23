@@ -62,9 +62,7 @@ fn SpaceCard(space: MySpaceResponse) -> Element {
                 p { class: "text-base font-medium text-[var(--text-primary)] truncate",
                     "{space.title}"
                 }
-                p { class: "text-sm text-[var(--text-secondary)]",
-                    "by {space.author_display_name}"
-                }
+                p { class: "text-sm text-[var(--text-secondary)]", "by {space.author_display_name}" }
             }
         }
     }

@@ -87,9 +87,7 @@ pub fn TeamCreationPopup() -> Element {
 
             // Nickname input
             div { class: "flex flex-col gap-1.5",
-                label { class: "text-sm font-medium text-c-secondary",
-                    "{tr.nickname}"
-                }
+                label { class: "text-sm font-medium text-c-secondary", "{tr.nickname}" }
                 input {
                     class: "w-full px-3 py-2 rounded-lg border border-divider bg-bg text-sm text-text-primary outline-none focus:border-primary",
                     r#type: "text",
@@ -103,9 +101,7 @@ pub fn TeamCreationPopup() -> Element {
 
             // Username input
             div { class: "flex flex-col gap-1.5",
-                label { class: "text-sm font-medium text-c-secondary",
-                    "{tr.username}"
-                }
+                label { class: "text-sm font-medium text-c-secondary", "{tr.username}" }
                 div { class: "flex items-center gap-0",
                     span { class: "px-3 py-2 rounded-l-lg border border-r-0 border-divider bg-bg text-sm text-c-secondary",
                         "@"
@@ -122,17 +118,13 @@ pub fn TeamCreationPopup() -> Element {
                     }
                 }
                 if !username.read().is_empty() && !is_valid() {
-                    p { class: "text-xs text-red-500",
-                        "{tr.username_error}"
-                    }
+                    p { class: "text-xs text-red-500", "{tr.username_error}" }
                 }
             }
 
             // Description input
             div { class: "flex flex-col gap-1.5",
-                label { class: "text-sm font-medium text-c-secondary",
-                    "{tr.description}"
-                }
+                label { class: "text-sm font-medium text-c-secondary", "{tr.description}" }
                 textarea {
                     class: "w-full px-3 py-2 rounded-lg border border-divider bg-bg text-sm text-text-primary outline-none focus:border-primary resize-none",
                     rows: "3",
@@ -146,9 +138,7 @@ pub fn TeamCreationPopup() -> Element {
 
             // Error message
             if let Some(err) = error_msg.read().as_ref() {
-                p { class: "text-xs text-red-500 text-center",
-                    "{err}"
-                }
+                p { class: "text-xs text-red-500 text-center", "{err}" }
             }
 
             // Buttons

@@ -65,8 +65,7 @@ pub fn SignupModal() -> Element {
         div {
             class: "overflow-y-scroll w-full max-h-screen scrollbar-hide",
             id: "signup_popup",
-            div {
-                class: "flex flex-col gap-4 w-full max-w-100 mx-auto",
+            div { class: "flex flex-col gap-4 w-full max-w-100 mx-auto",
 
                 // Profile Image
                 div { class: "flex relative justify-center items-center mx-auto group size-40 max-mobile:size-20",
@@ -118,9 +117,9 @@ pub fn SignupModal() -> Element {
                                     email_warning.set(String::new());
                                     loading.set(true);
                                     let result = send_code_handler(SendCodeRequest::Email {
-                                        email: email.read().clone(),
-                                    })
-                                    .await;
+                                            email: email.read().clone(),
+                                        })
+                                        .await;
                                     loading.set(false);
                                     match result {
                                         Ok(_) => {
@@ -160,10 +159,10 @@ pub fn SignupModal() -> Element {
                             onclick: move |_| async move {
                                 loading.set(true);
                                 let result = verify_code_handler(VerifyCodeRequest::Email {
-                                    email: email.read().clone(),
-                                    code: auth_code.read().clone(),
-                                })
-                                .await;
+                                        email: email.read().clone(),
+                                        code: auth_code.read().clone(),
+                                    })
+                                    .await;
                                 loading.set(false);
                                 match result {
                                     Ok(resp) => {
@@ -242,7 +241,9 @@ pub fn SignupModal() -> Element {
                         },
                     }
                     if !username_warning().is_empty() {
-                        p { class: "mt-1 text-sm text-c-p-50 light:text-red-600", {username_warning} }
+                        p { class: "mt-1 text-sm text-c-p-50 light:text-red-600",
+                            {username_warning}
+                        }
                     }
                 }
 
@@ -332,7 +333,11 @@ pub fn SignupModal() -> Element {
                             }
                         }
                     },
-                    if loading() { {tr.loading} } else { {tr.finish_signup} }
+                    if loading() {
+                        {tr.loading}
+                    } else {
+                        {tr.finish_signup}
+                    }
                 }
 
                 // Footer

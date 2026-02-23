@@ -22,7 +22,9 @@ pub fn Home(username: String) -> Element {
                 div { class: "flex flex-row items-center justify-between",
                     div { class: "flex flex-col",
                         p { class: "text-sm text-[var(--text-secondary)]", "Current Plan" }
-                        p { class: "text-2xl font-bold text-[var(--text-primary)]", "{membership.tier}" }
+                        p { class: "text-2xl font-bold text-[var(--text-primary)]",
+                            "{membership.tier}"
+                        }
                     }
                     div { class: "px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800",
                         "{membership.status}"
@@ -45,9 +47,7 @@ pub fn Home(username: String) -> Element {
                 }
 
                 if membership.auto_renew {
-                    p { class: "text-sm text-[var(--text-secondary)]",
-                        "Auto-renewal is enabled"
-                    }
+                    p { class: "text-sm text-[var(--text-secondary)]", "Auto-renewal is enabled" }
                 }
             }
         }

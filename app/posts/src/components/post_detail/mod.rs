@@ -170,9 +170,7 @@ pub fn PostDetailHeader(detail: PostDetailResponse, post_pk: String) -> Element 
                 }
             }
             // Title
-            h2 { class: "text-xl font-bold text-text-primary",
-                "{post.title}"
-            }
+            h2 { class: "text-xl font-bold text-text-primary", "{post.title}" }
             // Author and time
             div { class: "flex flex-row justify-between items-center",
                 div { class: "flex flex-row gap-2 items-center",
@@ -189,9 +187,7 @@ pub fn PostDetailHeader(detail: PostDetailResponse, post_pk: String) -> Element 
                         "{post.author_display_name}"
                     }
                 }
-                span { class: "font-light text-sm text-text-primary",
-                    "{time_ago(post.created_at)}"
-                }
+                span { class: "font-light text-sm text-text-primary", "{time_ago(post.created_at)}" }
             }
         }
     }
@@ -242,7 +238,9 @@ pub fn PostContent(detail: PostDetailResponse) -> Element {
                     }
                     if !post.html_contents.is_empty() {
                         div { class: "flex flex-col gap-2",
-                            h2 { class: "text-lg font-semibold text-text-primary", "Description" }
+                            h2 { class: "text-lg font-semibold text-text-primary",
+                                "Description"
+                            }
                             div { class: "text-text-primary",
                                 div { dangerous_inner_html: "{post.html_contents}" }
                             }
@@ -256,9 +254,7 @@ pub fn PostContent(detail: PostDetailResponse) -> Element {
             div { class: "flex flex-col w-full border rounded-[10px] bg-card-bg-secondary border-card-enable-border",
                 div { class: "break-all text-desc-text",
                     div { class: "px-5 py-5 border-none",
-                        div {
-                            dangerous_inner_html: "{post.html_contents}",
-                        }
+                        div { dangerous_inner_html: "{post.html_contents}" }
                     }
                 }
             }
@@ -288,9 +284,7 @@ fn ArtworkMetadataSection(metadata: Vec<PostArtworkMetadata>) -> Element {
                         span { class: "text-sm font-medium text-text-secondary capitalize",
                             "{item.trait_type.replace('_', \" \")}"
                         }
-                        span { class: "text-xs text-text-secondary font-semibold",
-                            "{item.value}"
-                        }
+                        span { class: "text-xs text-text-secondary font-semibold", "{item.value}" }
                     }
                 }
             }
@@ -331,9 +325,7 @@ pub fn CommentSection(detail: PostDetailResponse, post_pk: String) -> Element {
             // Comment count header
             div { class: "flex flex-row gap-2 items-center text-text-primary",
                 icons::chat::SquareChat { class: "w-6 h-6 [&>path]:stroke-icon-primary" }
-                span { class: "text-base font-medium",
-                    "{comment_count} {count_label}"
-                }
+                span { class: "text-base font-medium", "{comment_count} {count_label}" }
             }
             // Write a comment area
             if !*expand_comment.read() {
@@ -384,7 +376,10 @@ pub fn CommentSection(detail: PostDetailResponse, post_pk: String) -> Element {
                                         comment_text.set(String::new());
                                         expand_comment.set(false);
                                         is_submitting.set(false);
-                                        use_navigator().push(crate::Route::PostDetail { post_pk: pk });
+                                        use_navigator()
+                                            .push(crate::Route::PostDetail {
+                                                post_pk: pk,
+                                            });
                                     });
                                 }
                             },
@@ -460,14 +455,10 @@ fn CommentItem(
                         "{comment.author_display_name}"
                     }
                 }
-                span { class: "font-light text-xs text-text-secondary",
-                    "{time_ago(updated_secs)}"
-                }
+                span { class: "font-light text-xs text-text-secondary", "{time_ago(updated_secs)}" }
             }
             // Content
-            div { class: "text-sm text-text-primary pl-10",
-                "{comment.content}"
-            }
+            div { class: "text-sm text-text-primary pl-10", "{comment.content}" }
             // Actions row
             div { class: "flex flex-row gap-4 pl-10",
                 // Like button
@@ -516,9 +507,7 @@ fn CommentItem(
                     icons::chat::SquareChat { class: "w-4 h-4 [&>path]:stroke-icon-primary" }
                     "{t.reply_button}"
                     if comment.replies > 0 {
-                        span { class: "text-text-secondary",
-                            " ({comment.replies})"
-                        }
+                        span { class: "text-text-secondary", " ({comment.replies})" }
                     }
                 }
             }
@@ -561,7 +550,10 @@ fn CommentItem(
                                         reply_text.set(String::new());
                                         show_reply.set(false);
                                         is_reply_submitting.set(false);
-                                        use_navigator().push(crate::Route::PostDetail { post_pk: pk });
+                                        use_navigator()
+                                            .push(crate::Route::PostDetail {
+                                                post_pk: pk,
+                                            });
                                     });
                                 }
                             },
@@ -612,13 +604,9 @@ fn ReplyItem(reply: PostCommentResponse, post_pk: String) -> Element {
                         "{reply.author_display_name}"
                     }
                 }
-                span { class: "font-light text-xs text-text-secondary",
-                    "{time_ago(updated_secs)}"
-                }
+                span { class: "font-light text-xs text-text-secondary", "{time_ago(updated_secs)}" }
             }
-            div { class: "text-sm text-text-primary pl-8",
-                "{reply.content}"
-            }
+            div { class: "text-sm text-text-primary pl-8", "{reply.content}" }
             div { class: "flex flex-row gap-4 pl-8",
                 button {
                     class: "flex items-center gap-1 cursor-pointer text-xs",

@@ -19,17 +19,9 @@ pub fn PostDetail(post_pk: String) -> Element {
         Ok(detail) => {
             rsx! {
                 div { class: "flex flex-col gap-6 w-full",
-                    PostDetailHeader {
-                        detail: detail.clone(),
-                        post_pk: post_pk.clone(),
-                    }
-                    PostContent {
-                        detail: detail.clone(),
-                    }
-                    CommentSection {
-                        detail: detail.clone(),
-                        post_pk: post_pk.clone(),
-                    }
+                    PostDetailHeader { detail: detail.clone(), post_pk: post_pk.clone() }
+                    PostContent { detail: detail.clone() }
+                    CommentSection { detail: detail.clone(), post_pk: post_pk.clone() }
                 }
             }
         }

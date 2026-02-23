@@ -127,7 +127,7 @@ fn SingleChoiceViewer(
             is_required: question.is_required,
         }
         div { class: "flex flex-col gap-2",
-            for (opt_idx, option) in question.options.iter().enumerate() {
+            for (opt_idx , option) in question.options.iter().enumerate() {
                 {
                     let is_selected = selected == Some(opt_idx as i32);
                     let opt_idx = opt_idx as i32;
@@ -136,10 +136,14 @@ fn SingleChoiceViewer(
                         button {
                             class: "flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors",
                             class: if is_selected { "border-blue-500 bg-blue-500/10" } else { "border-neutral-700 hover:border-neutral-500" },
-                            disabled: disabled,
+                            disabled,
                             onclick: move |_| {
                                 let next = if is_selected { None } else { Some(opt_idx) };
-                                on_change.call(Answer::SingleChoice { answer: next, other: None });
+                                on_change
+                                    .call(Answer::SingleChoice {
+                                        answer: next,
+                                        other: None,
+                                    });
                             },
                             div {
                                 class: "w-4 h-4 rounded-full border-2 flex items-center justify-center",
@@ -177,7 +181,7 @@ fn MultipleChoiceViewer(
             is_required: question.is_required,
         }
         div { class: "flex flex-col gap-2",
-            for (opt_idx, option) in question.options.iter().enumerate() {
+            for (opt_idx , option) in question.options.iter().enumerate() {
                 {
                     let is_selected = selected.contains(&(opt_idx as i32));
                     let opt_idx = opt_idx as i32;
@@ -187,7 +191,7 @@ fn MultipleChoiceViewer(
                         button {
                             class: "flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors",
                             class: if is_selected { "border-blue-500 bg-blue-500/10" } else { "border-neutral-700 hover:border-neutral-500" },
-                            disabled: disabled,
+                            disabled,
                             onclick: move |_| {
                                 let mut next = selected.clone();
                                 if next.contains(&opt_idx) {
@@ -195,7 +199,11 @@ fn MultipleChoiceViewer(
                                 } else {
                                     next.push(opt_idx);
                                 }
-                                on_change.call(Answer::MultipleChoice { answer: Some(next), other: None });
+                                on_change
+                                    .call(Answer::MultipleChoice {
+                                        answer: Some(next),
+                                        other: None,
+                                    });
                             },
                             div {
                                 class: "w-4 h-4 rounded border-2 flex items-center justify-center",
@@ -238,23 +246,32 @@ fn SubjectiveQuestionViewer(
             input {
                 class: "w-full p-3 rounded-lg border border-neutral-700 bg-transparent text-white placeholder-neutral-500 focus:border-blue-500 outline-none",
                 r#type: "text",
-                disabled: disabled,
+                disabled,
                 value: "{current_value}",
                 oninput: move |evt| {
                     if is_short {
-                        on_change.call(Answer::ShortAnswer { answer: Some(evt.value().to_string()) });
+                        on_change
+                            .call(Answer::ShortAnswer {
+                                answer: Some(evt.value().to_string()),
+                            });
                     } else {
-                        on_change.call(Answer::Subjective { answer: Some(evt.value().to_string()) });
+                        on_change
+                            .call(Answer::Subjective {
+                                answer: Some(evt.value().to_string()),
+                            });
                     }
                 },
             }
         } else {
             textarea {
                 class: "w-full p-3 rounded-lg border border-neutral-700 bg-transparent text-white placeholder-neutral-500 focus:border-blue-500 outline-none min-h-[100px]",
-                disabled: disabled,
+                disabled,
                 value: "{current_value}",
                 oninput: move |evt| {
-                    on_change.call(Answer::Subjective { answer: Some(evt.value().to_string()) });
+                    on_change
+                        .call(Answer::Subjective {
+                            answer: Some(evt.value().to_string()),
+                        });
                 },
             }
         }
@@ -281,7 +298,7 @@ fn CheckboxViewer(
             is_required: question.is_required,
         }
         div { class: "flex flex-col gap-2",
-            for (opt_idx, option) in question.options.iter().enumerate() {
+            for (opt_idx , option) in question.options.iter().enumerate() {
                 {
                     let is_selected = selected.contains(&(opt_idx as i32));
                     let opt_idx = opt_idx as i32;
@@ -292,16 +309,23 @@ fn CheckboxViewer(
                         button {
                             class: "flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors",
                             class: if is_selected { "border-blue-500 bg-blue-500/10" } else { "border-neutral-700 hover:border-neutral-500" },
-                            disabled: disabled,
+                            disabled,
                             onclick: move |_| {
                                 let next = if is_multi {
                                     let mut n = selected.clone();
-                                    if n.contains(&opt_idx) { n.retain(|&x| x != opt_idx); } else { n.push(opt_idx); }
+                                    if n.contains(&opt_idx) {
+                                        n.retain(|&x| x != opt_idx);
+                                    } else {
+                                        n.push(opt_idx);
+                                    }
                                     n
                                 } else {
                                     if is_selected { vec![] } else { vec![opt_idx] }
                                 };
-                                on_change.call(Answer::Checkbox { answer: Some(next) });
+                                on_change
+                                    .call(Answer::Checkbox {
+                                        answer: Some(next),
+                                    });
                             },
                             div {
                                 class: "w-4 h-4 rounded border-2 flex items-center justify-center",
@@ -340,23 +364,19 @@ fn DropdownViewer(
         }
         select {
             class: "w-full p-3 rounded-lg border border-neutral-700 bg-neutral-900 text-white focus:border-blue-500 outline-none",
-            disabled: disabled,
+            disabled,
             onchange: move |evt| {
                 let val: String = evt.value().to_string();
                 let idx: Option<i32> = val.parse().ok();
                 on_change.call(Answer::Dropdown { answer: idx });
             },
             option { value: "", selected: selected.is_none(), "Select..." }
-            for (opt_idx, option) in question.options.iter().enumerate() {
+            for (opt_idx , option) in question.options.iter().enumerate() {
                 {
                     let opt_val = format!("{opt_idx}");
                     let is_sel = selected == Some(opt_idx as i32);
                     rsx! {
-                        option {
-                            value: "{opt_val}",
-                            selected: is_sel,
-                            "{option}"
-                        }
+                        option { value: "{opt_val}", selected: is_sel, "{option}" }
                     }
                 }
             }
@@ -400,9 +420,12 @@ fn LinearScaleViewer(
                             button {
                                 class: "w-10 h-10 rounded-full border-2 flex items-center justify-center text-sm transition-colors",
                                 class: if is_selected { "border-blue-500 bg-blue-500 text-white" } else { "border-neutral-600 text-neutral-400 hover:border-neutral-400" },
-                                disabled: disabled,
+                                disabled,
                                 onclick: move |_| {
-                                    on_change.call(Answer::LinearScale { answer: Some(val as i32) });
+                                    on_change
+                                        .call(Answer::LinearScale {
+                                            answer: Some(val as i32),
+                                        });
                                 },
                                 "{val}"
                             }

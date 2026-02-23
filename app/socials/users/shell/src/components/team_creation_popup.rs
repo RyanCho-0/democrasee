@@ -146,9 +146,7 @@ pub fn TeamCreationPopup() -> Element {
                     let (_, validation_error) = username_validation();
                     match validation_error {
                         Some(err) => rsx! {
-                            p { class: "text-xs text-red-500",
-                                "{err}"
-                            }
+                            p { class: "text-xs text-red-500", "{err}" }
                         },
                         None => rsx! {},
                     }
@@ -170,9 +168,7 @@ pub fn TeamCreationPopup() -> Element {
 
             // Error message
             if let Some(err) = error_msg.read().as_ref() {
-                p { class: "text-xs text-red-500 text-center",
-                    "{err}"
-                }
+                p { class: "text-xs text-red-500 text-center", "{err}" }
             }
 
             // Action buttons
@@ -185,11 +181,7 @@ pub fn TeamCreationPopup() -> Element {
                     "{tr.cancel}"
                 }
                 button {
-                    class: if can_submit() {
-                        "w-full px-4 py-2 rounded-full bg-primary text-sm text-white hover:bg-primary/80 cursor-pointer"
-                    } else {
-                        "w-full px-4 py-2 rounded-full bg-neutral-600 text-sm text-white cursor-not-allowed"
-                    },
+                    class: if can_submit() { "w-full px-4 py-2 rounded-full bg-primary text-sm text-white hover:bg-primary/80 cursor-pointer" } else { "w-full px-4 py-2 rounded-full bg-neutral-600 text-sm text-white cursor-not-allowed" },
                     disabled: !can_submit(),
                     onclick: move |_| {
                         let nickname_val = nickname.read().clone();

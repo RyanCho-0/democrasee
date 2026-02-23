@@ -87,7 +87,9 @@ pub fn MobileSideMenu(is_open: Signal<bool>) -> Element {
                     Link {
                         class: "w-full px-3 py-2.5 hover:bg-hover rounded-md text-base text-c-secondary",
                         to: "/",
-                        onclick: move |_| { is_open.set(false); },
+                        onclick: move |_| {
+                            is_open.set(false);
+                        },
                         "{tr.home}"
                     }
 
@@ -98,7 +100,9 @@ pub fn MobileSideMenu(is_open: Signal<bool>) -> Element {
                         onclick: move |_| {
                             is_open.set(false);
                             popup
-                                .open(rsx! { LoginModal {} })
+                                .open(rsx! {
+                                    LoginModal {}
+                                })
                                 .with_title(tr.join_the_movement)
                                 .without_backdrop_close();
                         },
@@ -121,31 +125,41 @@ pub fn MobileSideMenu(is_open: Signal<bool>) -> Element {
                     Link {
                         class: "w-full px-3 py-2.5 hover:bg-hover rounded-md text-base text-c-secondary",
                         to: format!("/{}/posts", username),
-                        onclick: move |_| { is_open.set(false); },
+                        onclick: move |_| {
+                            is_open.set(false);
+                        },
                         "{tr.my_posts}"
                     }
                     Link {
                         class: "w-full px-3 py-2.5 hover:bg-hover rounded-md text-base text-c-secondary",
                         to: format!("/{}/drafts", username),
-                        onclick: move |_| { is_open.set(false); },
+                        onclick: move |_| {
+                            is_open.set(false);
+                        },
                         "{tr.drafts}"
                     }
                     Link {
                         class: "w-full px-3 py-2.5 hover:bg-hover rounded-md text-base text-c-secondary",
                         to: format!("/{}/spaces", username),
-                        onclick: move |_| { is_open.set(false); },
+                        onclick: move |_| {
+                            is_open.set(false);
+                        },
                         "{tr.my_spaces}"
                     }
                     Link {
                         class: "w-full px-3 py-2.5 hover:bg-hover rounded-md text-base text-c-secondary",
                         to: format!("/{}/credentials", username),
-                        onclick: move |_| { is_open.set(false); },
+                        onclick: move |_| {
+                            is_open.set(false);
+                        },
                         "{tr.credentials}"
                     }
                     Link {
                         class: "w-full px-3 py-2.5 hover:bg-hover rounded-md text-base text-c-secondary",
                         to: format!("/{}/settings", username),
-                        onclick: move |_| { is_open.set(false); },
+                        onclick: move |_| {
+                            is_open.set(false);
+                        },
                         "{tr.settings}"
                     }
                 }
@@ -155,13 +169,13 @@ pub fn MobileSideMenu(is_open: Signal<bool>) -> Element {
 
                 // User profile section
                 div { class: "flex flex-col gap-3",
-                    div { class: "text-xs text-c-secondary px-2",
-                        "{tr.user}"
-                    }
+                    div { class: "text-xs text-c-secondary px-2", "{tr.user}" }
                     Link {
                         class: "flex items-center gap-3 px-3 py-2.5 hover:bg-hover rounded-md",
                         to: "/",
-                        onclick: move |_| { is_open.set(false); },
+                        onclick: move |_| {
+                            is_open.set(false);
+                        },
                         if !user.profile_url.is_empty() {
                             img {
                                 src: "{user.profile_url}",
@@ -171,9 +185,7 @@ pub fn MobileSideMenu(is_open: Signal<bool>) -> Element {
                         } else {
                             div { class: "w-8 h-8 bg-neutral-600 rounded-full" }
                         }
-                        span { class: "text-base text-c-secondary",
-                            "{user.display_name}"
-                        }
+                        span { class: "text-base text-c-secondary", "{user.display_name}" }
                     }
                 }
 
@@ -182,15 +194,15 @@ pub fn MobileSideMenu(is_open: Signal<bool>) -> Element {
                     div { class: "h-px bg-divider" }
 
                     div { class: "flex flex-col gap-3",
-                        div { class: "text-xs text-c-secondary px-2",
-                            "{tr.teams}"
-                        }
+                        div { class: "text-xs text-c-secondary px-2", "{tr.teams}" }
                         div { class: "flex flex-col gap-2",
                             for team in teams.iter() {
                                 Link {
                                     class: "flex items-center gap-3 px-3 py-2.5 hover:bg-hover rounded-md",
                                     to: format!("/teams/{}", team.username),
-                                    onclick: move |_| { is_open.set(false); },
+                                    onclick: move |_| {
+                                        is_open.set(false);
+                                    },
                                     if !team.profile_url.is_empty() {
                                         img {
                                             src: "{team.profile_url}",
@@ -200,9 +212,7 @@ pub fn MobileSideMenu(is_open: Signal<bool>) -> Element {
                                     } else {
                                         div { class: "w-8 h-8 bg-neutral-600 rounded-full" }
                                     }
-                                    span { class: "text-base text-c-secondary",
-                                        "{team.nickname}"
-                                    }
+                                    span { class: "text-base text-c-secondary", "{team.nickname}" }
                                 }
                             }
                         }
@@ -218,9 +228,9 @@ pub fn MobileSideMenu(is_open: Signal<bool>) -> Element {
                         class: "w-full px-3 py-2.5 hover:bg-hover rounded-md text-left text-base text-c-secondary cursor-pointer",
                         onclick: move |_| {
                             is_open.set(false);
-                            popup
-                                .open(rsx! { TeamCreationPopup {} })
-                                .with_title(tr.create_team);
+                            popup.open(rsx! {
+                                TeamCreationPopup {}
+                            }).with_title(tr.create_team);
                         },
                         "{tr.create_team}"
                     }

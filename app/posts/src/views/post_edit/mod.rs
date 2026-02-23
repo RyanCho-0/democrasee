@@ -193,9 +193,7 @@ pub fn PostEdit(post_pk: String) -> Element {
                         }
                     },
                 }
-                div { class: "text-xs text-text-tertiary text-right",
-                    "{title_len}/{TITLE_MAX_LENGTH}"
-                }
+                div { class: "text-xs text-text-tertiary text-right", "{title_len}/{TITLE_MAX_LENGTH}" }
             }
 
             // TiptapEditor

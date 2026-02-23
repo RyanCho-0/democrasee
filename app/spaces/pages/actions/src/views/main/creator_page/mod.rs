@@ -58,7 +58,7 @@ pub fn CreatorActionPage(space_id: SpacePartition) -> Element {
                             }
                             span { {tr.button_add_action_label} }
                         }
-
+                    
                     }
 
                     p { class: "text-[0.75rem]/[1rem] font-semibold text-neutral-400 light:text-neutral-600 text-center",
@@ -79,7 +79,7 @@ pub fn CreatorActionPage(space_id: SpacePartition) -> Element {
                     }
                 }
             }
-
+        
         }
     }
 }

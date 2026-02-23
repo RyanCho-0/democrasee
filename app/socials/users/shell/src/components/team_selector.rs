@@ -44,9 +44,7 @@ pub fn TeamSelector(username: String) -> Element {
                 onclick: move |_| {
                     open.set(!open());
                 },
-                span { class: "font-bold text-[18px] text-c-primary truncate",
-                    "{display_name}"
-                }
+                span { class: "font-bold text-[18px] text-c-primary truncate", "{display_name}" }
                 icons::arrows::ChevronDown {
                     width: "16",
                     height: "16",
@@ -66,9 +64,7 @@ pub fn TeamSelector(username: String) -> Element {
 
                 div { class: "absolute left-0 top-full w-full min-w-[200px] rounded-lg border border-divider bg-bg p-2 z-999",
                     // Teams label
-                    div { class: "text-xs text-c-secondary px-2 py-1 font-medium",
-                        "{tr.teams}"
-                    }
+                    div { class: "text-xs text-c-secondary px-2 py-1 font-medium", "{tr.teams}" }
 
                     // Scrollable team list
                     div { class: "max-h-[300px] overflow-y-auto",
@@ -88,9 +84,7 @@ pub fn TeamSelector(username: String) -> Element {
                             } else {
                                 div { class: "w-6 h-6 rounded-full border border-neutral-600 bg-neutral-600" }
                             }
-                            span { class: "text-sm text-c-primary truncate",
-                                "{user.display_name}"
-                            }
+                            span { class: "text-sm text-c-primary truncate", "{user.display_name}" }
                         }
 
                         // Team entries
@@ -127,7 +121,9 @@ pub fn TeamSelector(username: String) -> Element {
                         class: "w-full flex items-center gap-2 px-2 py-1.5 hover:bg-hover rounded-md text-sm text-c-primary cursor-pointer text-left",
                         onclick: move |_| {
                             open.set(false);
-                            popup.open(rsx! { TeamCreationPopup {} });
+                            popup.open(rsx! {
+                                TeamCreationPopup {}
+                            });
                             popup.with_title(tr.create_team);
                         },
                         "{tr.create_team}"

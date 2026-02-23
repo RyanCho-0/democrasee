@@ -139,7 +139,7 @@ pub fn CreateActionModal(space_id: SpacePartition) -> Element {
                     }
                     div { class: "w-full h-[14.875rem] rounded-[0.75rem] border border-neutral-700 light:border-neutral-300 bg-neutral-950/40 light:bg-neutral-100" }
                 }
-
+            
             }
 
             // Bottom bar
@@ -183,7 +183,7 @@ fn ActionTypeOption(
 
             div { class: "flex justify-center items-center rounded-[0.625rem] size-11 bg-white light:bg-white shrink-0",
                 {icon}
-
+            
             }
 
             div { class: "flex flex-col items-start gap-1",

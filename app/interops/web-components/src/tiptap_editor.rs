@@ -39,7 +39,7 @@ pub fn TiptapEditor(props: TiptapEditorProps) -> Element {
                     }
                 },
             }
-
+        
         }
     }
 }

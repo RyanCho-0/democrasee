@@ -108,12 +108,12 @@ pub fn CreatorPage(space_id: SpacePartition) -> Element {
                                     let mut editable = editable.clone();
                                     spawn(async move {
                                         match crate::controllers::update_analyze(
-                                            space_pk,
-                                            crate::controllers::UpdateAnalyzeHtmlRequest {
-                                                html_contents: html,
-                                            },
-                                        )
-                                        .await
+                                                space_pk,
+                                                crate::controllers::UpdateAnalyzeHtmlRequest {
+                                                    html_contents: html,
+                                                },
+                                            )
+                                            .await
                                         {
                                             Ok(_) => editable.set(false),
                                             Err(err) => error.set(Some(err.to_string())),

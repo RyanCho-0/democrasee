@@ -11,8 +11,12 @@ pub fn Home(teamname: String) -> Element {
     let is_owner = true;
 
     if is_owner {
-        rsx! { AdminPage { teamname } }
+        rsx! {
+            AdminPage { teamname }
+        }
     } else {
-        rsx! { ViewerPage { teamname } }
+        rsx! {
+            ViewerPage { teamname }
+        }
     }
 }
