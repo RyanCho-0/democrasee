@@ -4,22 +4,21 @@ use std::process::Command;
 fn main() {
     let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();
     let manifest_path = Path::new(&manifest_dir);
-    let workspace_root = manifest_path.parent().unwrap().parent().unwrap();
+    let js_dir = manifest_path.join("js");
     let assets_dir = manifest_path.join("assets");
 
-    let status = Command::new("pnpm")
-        .args(["--filter", "@ratel/components", "install"])
-        .current_dir(workspace_root)
+    let status = Command::new("npm")
+        .args(["install"])
+        .current_dir(&js_dir)
         .status()
-        .expect("failed to run pnpm install");
-    assert!(status.success(), "pnpm install for @ratel/components failed");
+        .expect("failed to run npm install");
+    assert!(status.success(), "npm install failed");
 
-    let status = Command::new("pnpm")
-        .args(["--filter", "@ratel/components", "build"])
+    let status = Command::new("npm")
+        .args(["run", "build"])
         .env("ASSETS_DIR", &assets_dir)
-        .current_dir(workspace_root)
+        .current_dir(&js_dir)
         .status()
-        .expect("failed to run pnpm build");
-
-    assert!(status.success(), "pnpm build for @ratel/components failed");
+        .expect("failed to run npm run build");
+    assert!(status.success(), "npm run build failed");
 }
