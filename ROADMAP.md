@@ -9,7 +9,7 @@ This is the product index. Each checkbox maps to **exactly one spec file** in `r
 
 ## Planned
 
-_None yet._
+- [ ] [Hot Spaces ranking (fast, global home ranking)](roadmap/hot-spaces-ranking.md)
 
 ## Shipped
 

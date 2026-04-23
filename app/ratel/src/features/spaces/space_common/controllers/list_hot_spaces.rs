@@ -3,9 +3,7 @@
 // for each space (N+1 DynamoDB queries). This breaks once the total number of
 // public spaces exceeds the fetch window, and latency grows linearly with it.
 //
-// Superseded design: `SpaceHotScore` entity on GSI8 with pre-computed scores
-// maintained by EventBridge, read path is one GSI query + parallel batch_gets.
-// Plan: docs/superpowers/plans/2026-04-21-hot-spaces-ranking.md
+// Follow-up roadmap: `roadmap/hot-spaces-ranking.md`
 
 use crate::common::models::space::SpaceCommon;
 use crate::common::*;

@@ -1,6 +1,5 @@
 // TODO(hot-spaces-ranking): `count_actions` below is an N+1 DynamoDB scan.
-// The denormalized-count follow-up (SpaceActionCount entity) in
-// docs/superpowers/plans/2026-04-21-hot-spaces-ranking.md removes it.
+// Follow-up roadmap: `roadmap/hot-spaces-ranking.md`
 
 use super::list_hot_spaces::{HotSpaceHeat, HotSpaceResponse};
 use crate::common::*;
